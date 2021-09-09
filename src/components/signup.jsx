@@ -1,6 +1,15 @@
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { auth } from "../firebase";
+
 let Signup = ()=>{
   let history = useHistory();
+  let [password,setPassword] = useState("");
+  let [email,setEmail] = useState("");
+  let [confirmPassword,setConfirmPassword] = useState("");
+
+  
+  
   return (
     <>
       <div className="row">
@@ -13,6 +22,10 @@ let Signup = ()=>{
               </label>
               <input
                 type="email"
+                value ={email}
+                onChange={(e)=>{
+                  setEmail(e.currentTarget.value);
+                }}
                 className="form-control"
                 id="exampleInputEmail1"
               />
@@ -23,6 +36,10 @@ let Signup = ()=>{
               </label>
               <input
                 type="password"
+                value={password}
+                onChange={(e)=>{
+                  setPassword(e.currentTarget.value);
+                }}
                 className="form-control"
                 id="exampleInputPassword1"
               />
@@ -33,12 +50,22 @@ let Signup = ()=>{
               </label>
               <input
                 type="password"
+                value ={confirmPassword}
+                onChange={(e)=>{
+                  setConfirmPassword(e.currentTarget.value)
+                }}
                 className="form-control"
                 id="exampleInputPassword1"
               />
             </div>
 
-            <button className="btn btn-primary">Sign-up</button>
+            <button 
+            onclick = {()=>{
+              if(password === confirmPassword){
+                auth.createUserWithEmailAndPassword(email,password);
+              }
+            }}
+            className="btn btn-primary">Sign-up</button>
             <br />
             <br />
             <button onClick={()=>{
