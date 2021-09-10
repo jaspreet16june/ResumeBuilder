@@ -1,15 +1,21 @@
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom"
-import  { auth ,firestore } from "./firebase";
+import { auth ,firestore } from "./firebase";
 import Navbar from "./components/Navbar"
 import Home from "./components/Home"
 import Login from "./components/login"
 import Signup from "./components/signup"
 import { useEffect} from "react";
+import { useDispatch } from "react-redux";
+import { userCreator } from "./redux/action/userAction";
 let App=()=> {
+
+  let dispatch = useDispatch()
+
   useEffect(()=>{
 
     let unsub = auth.onAuthStateChanged(async (user)=>{
       if(user){
+        dispatch(userCreator(user))
 
         let {uid,email} = user; // destructuring of objectc
         let docRef = firestore.collection("user").doc(uid);
