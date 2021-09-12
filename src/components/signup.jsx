@@ -1,5 +1,6 @@
-import {useState } from "react";
-import { useHistory } from "react-router-dom";
+import {useState} from "react";
+import {useSelector} from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 import { auth } from "../firebase";
 
 let Signup = ()=>{
@@ -8,10 +9,11 @@ let Signup = ()=>{
   let [email,setEmail] = useState("");
   let [confirmPassword,setConfirmPassword] = useState("");
 
-  
+  let user = useSelector((state) => state)
   
   return (
     <>
+    {user ? <Redirect to = "/home" /> : ""  }
       <div className="row">
         <div className="col-4 offset-4">
           <h1 className="mt-4 mb-4">SignUp</h1>
@@ -58,14 +60,26 @@ let Signup = ()=>{
                 id="exampleInputPassword1"
               />
             </div>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                if (password === confirmPassword) {
+                  auth.createUserWithEmailAndPassword(email, password);
+                }
+              }}
+              class="btn btn-primary"
+            >
+              Sign Up
+            </button>
 
-            <button 
-            onclick = {()=>{
+            {/* <button 
+            onclick = {(e)=>{
+              e.preventDefault();
               if(password === confirmPassword){
                 auth.createUserWithEmailAndPassword(email,password);
               }
             }}
-            className="btn btn-primary">Sign-up</button>
+            className="btn btn-primary">Sign-up</button> */}
             <br />
             <br />
             <button onClick={()=>{
