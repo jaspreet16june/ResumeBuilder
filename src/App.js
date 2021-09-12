@@ -7,6 +7,7 @@ import Signup from "./components/signup"
 import { useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { userCreator } from "./redux/action/userAction";
+import Personal from "./components/personalData"
 let App=()=> {
 
   let dispatch = useDispatch()
@@ -37,6 +38,9 @@ let App=()=> {
   <Router>
     <Navbar/>
     <Switch>
+    <Route path ="/personalData">
+        <Personal/>
+      </Route>
       <Route path ="/login">
         <Login/>
       </Route>
