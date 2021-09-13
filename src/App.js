@@ -16,7 +16,7 @@ let App=()=> {
 
     let unsub = auth.onAuthStateChanged(async (user)=>{
       if(user){
-        dispatch(userCreator(user))
+        dispatch(userCreator(user));
 
         let {uid,email} = user; // destructuring of objectc
         let docRef = firestore.collection("user").doc(uid);

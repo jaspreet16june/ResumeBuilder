@@ -1,0 +1,13 @@
+.personal-container{
+    height: 97vh;
+    display: flex;
+    border: 1px solid black;
+}
+.personal-form{
+    
+    width: 50%;
+    margin: 40px;
+}
+.text-primary{
+    margin-bottom: 12px;
+}
