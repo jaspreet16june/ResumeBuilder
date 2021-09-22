@@ -7,7 +7,7 @@ let initialState ={
     email:"",
     cgpa:"",
     Degree:"",
-    College_Name:"",
+    Institute:"",
     Year:"",
 
 }

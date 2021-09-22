@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar"
 import Home from "./components/Home"
 import Login from "./components/login"
 import Signup from "./components/signup"
+import Qualification from "./components/qualification";
 import { useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { userCreator } from "./redux/action/userAction";
@@ -38,6 +39,9 @@ let App=()=> {
   <Router>
     <Navbar/>
     <Switch>
+    <Route path = "/qualification">
+      <Qualification/>
+    </Route>
     <Route path ="/personalData">
         <Personal/>
       </Route>

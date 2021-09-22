@@ -1,0 +1,25 @@
+/* .personal-container,.qualifiaction-container{
+    height: 97vh;
+    display: flex;
+    border: 1px solid black;
+}
+.personal-form,.qualifiaction-form{
+    
+    width: 50%;
+    margin: 40px;
+} */
+
+.personal-container,
+.qualification-container {
+  height: 92vh;
+  display: flex;
+}
+
+.personal-form,
+.qualification-form{
+  width: 50%;
+}
+
+.text-primary{
+    margin-bottom: 12px;
+}
