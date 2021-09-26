@@ -9,6 +9,7 @@ let initialState ={
     Degree:"",
     Institute:"",
     Year:"",
+    isPublic:false,
 
 }
 let detailReducer =(state = initialState, action)=>{

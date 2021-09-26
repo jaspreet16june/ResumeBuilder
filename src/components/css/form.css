@@ -15,11 +15,30 @@
   display: flex;
 }
 
-.personal-form,
+
 .qualification-form{
   width: 50%;
+  margin:2rem;
 }
 
 .text-primary{
     margin-bottom: 12px;
+}
+.personal-form{
+  width: 50%;
+  margin:2rem;
+}
+.Generate{
+  
+    position: fixed;
+    bottom: 5rem;
+    right: 1rem;
+
+}
+.save{
+
+    position: fixed;
+    bottom: 2rem;
+    right: 1rem;
+
 }

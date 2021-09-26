@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 let Qualification = () => {
    let details =  useSelector((state)=> state.details);
    let dispatch = useDispatch()
-   let {Institute,degree,year,cgpa} = details;
+   let {Institute,degree,year,cgpa,isPublic} = details;
   return (
     <>
       <div className="qualification-container">
@@ -103,7 +103,16 @@ let Qualification = () => {
               <div className="invalid-feedback">Please provide a valid city.</div>
             </div>
             <div class="form-check">
-             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+             <input 
+             class="form-check-input" 
+             type="checkbox" 
+             id="flexCheckDefault" 
+             onClick ={(e)=>{
+               console.log(e.currentTarget.value)
+                dispatch(detailsCreator({isPublic :e.currentTarget.value}));
+             }}             
+             
+             />
              <label class="form-check-label" for="flexCheckDefault">
              Default checkbox
              </label>
@@ -117,6 +126,10 @@ let Qualification = () => {
         </div>
         <Preview />
       </div>
+      {/* <div className="btn1 btn-primary">Save to dataBase</div> */}
+      <div className="btn btn-primary save">Save to dataBase</div>
+      <div className="btn btn-primary Generate" >Generate Link</div>
+
     </>
   );
 };
