@@ -9,6 +9,7 @@ import { useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { userCreator } from "./redux/action/userAction";
 import Personal from "./components/personalData"
+import PublicPreview from "./components/publicPreview";
 let App=()=> {
 
   let dispatch = useDispatch()
@@ -39,6 +40,9 @@ let App=()=> {
   <Router>
     <Navbar/>
     <Switch>
+    <Route path = "/publicPreview">
+      <PublicPreview/>
+    </Route>
     <Route path = "/qualification">
       <Qualification/>
     </Route>

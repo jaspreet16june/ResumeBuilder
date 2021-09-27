@@ -23,3 +23,5 @@ let saveReducer =(state = initialState,action)=>{
                 return state;
         }
 }
+
+export default saveReducer;

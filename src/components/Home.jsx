@@ -33,8 +33,8 @@ let Home = () => {
 
       <button
       className = "btn btn-primary home-logout"
-        onClick={(e) => {
-            console.log(e);
+        onClick={() => {
+            
             // e.preventDefault();
           auth.signOut();
           

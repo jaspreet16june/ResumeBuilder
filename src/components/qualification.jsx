@@ -1,13 +1,19 @@
 import Preview from "./Preview";
 import "./css/form.css";
 
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { detailsCreator } from "../redux/action/personalAction";
-import { useDispatch } from "react-redux";
+import {saveResume} from "../redux/action/saveAction"
+import {useHistory} from "react-router"
+
 let Qualification = () => {
+    let history = useHistory();
    let details =  useSelector((state)=> state.details);
    let dispatch = useDispatch()
-   let {Institute,degree,year,cgpa,isPublic} = details;
+   let {id} = useSelector((state)=>state.saveState)
+   let {Institute,degree,year,cgpa,isPublic} = useSelector((state)=>state.details);
+   let code  = useSelector((state)=>state.template);
+   let {uid} = useSelector((state)=>state.user);
   return (
     <>
       <div className="qualification-container">
@@ -70,7 +76,7 @@ let Qualification = () => {
               <div className="input-group has-validation">
                
                 <input
-                  type="email"
+                  type="number"
                   className="form-control"
                   id="validationCustomUsername"
                   value ={cgpa}
@@ -89,7 +95,7 @@ let Qualification = () => {
                 Year
               </label>
               <input
-                type="text"
+                type="number"
                 placeholder="City"
                 value ={year}
                 onChange={(e)=>{
@@ -107,18 +113,23 @@ let Qualification = () => {
              class="form-check-input" 
              type="checkbox" 
              id="flexCheckDefault" 
+             checked={isPublic}
              onClick ={(e)=>{
-               console.log(e.currentTarget.value)
-                dispatch(detailsCreator({isPublic :e.currentTarget.value}));
+              
+                dispatch(detailsCreator({isPublic :e.currentTarget.checked}));
              }}             
              
              />
              <label class="form-check-label" for="flexCheckDefault">
-             Default checkbox
+             Make Public
              </label>
              </div>
             <div className="col-12">
-              <button className="btn btn-primary next-btn" type="submit">
+              <button
+               onClick={() => {
+                history.push("/personalData");
+              }} 
+              className="btn btn-primary next-btn" type="submit">
                 PREV
               </button>
             </div>
@@ -127,8 +138,16 @@ let Qualification = () => {
         <Preview />
       </div>
       {/* <div className="btn1 btn-primary">Save to dataBase</div> */}
-      <div className="btn btn-primary save">Save to dataBase</div>
-      <div className="btn btn-primary Generate" >Generate Link</div>
+      <div className="btn btn-primary save" 
+            onClick={()=>{
+              dispatch(saveResume(uid,details,code))
+            }}
+      >Save to dataBase</div>
+      <div className="btn btn-primary Generate" 
+        onClick={()=>{
+          alert(`localhost:3000/publicpreveiw/ ${id}`)
+        }}
+      >Generate Link</div>
 
     </>
   );
